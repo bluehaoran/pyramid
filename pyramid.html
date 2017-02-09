@@ -4,7 +4,7 @@
 	<title>The Preaching Pyramid</title>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,58 +15,68 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<style>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oswald|Roboto|Roboto+Condensed" rel="stylesheet">
 
-/* --------------------------------------------------- */
+	<style>
+
+		/* --------------------------------------------------- */
 /* Pure CSS Parallax, source: 
    http://keithclark.co.uk/articles/pure-css-parallax-websites/
-*/
-.parallax {
-  perspective: 1px;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  perspective-origin-x: 100%;
-}
-.parallax__layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+   */
+   .parallax {
+   	perspective: 1px;
+   	height: 100vh;
+   	overflow-x: hidden;
+   	overflow-y: auto;
+   	perspective-origin-x: 100%;
+   }
+   .parallax__layer {
+   	position: absolute;
+   	top: 0;
+   	right: 0;
+   	bottom: 0;
+   	left: 0;
+   	transform-origin-x: 100%;
+   }
+   .parallax__layer--base {
+   	transform: translateZ(0);
+   }
 
-  transform-origin-x: 100%;
-}
-.parallax__layer--base {
-  transform: translateZ(0);
-}
+   /*The scale factor can be calculated with 1 + (translateZ * -1) / perspective. */
+   .parallax__layer--back {
+   	/*transform: translateZ(-1px);*/
 
-/*The scale factor can be calculated with 1 + (translateZ * -1) / perspective. */
-.parallax__layer--back {
-  /*transform: translateZ(-1px);*/
+   	transform: translateZ(-10px) scale(11);
 
-  transform: translateZ(-10px) scale(11);
+   	background: url(pyramid-2.png);
+   	background-attachment: fixed;
+   	background-position: center;
+   	background-repeat: no-repeat;
+   	background-size: cover;
+   }
 
-	background: url(pyramid-2.png);
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+   /* --------------------------------------------------- */
 
+   body > * {
+   	font-family: 'Roboto Condensed', san-serif;
+   }
 
-}
+   h1, h2, h3, h4, h5, h6, label {
+   		font-family: 'Oswald', san-serif;
+   }
+   h1 {
+   	font-size: 2em;
+   }
 
-/* --------------------------------------------------- */
+   .instructions {
+   	font-style: italic;
+   }
 
-
-.instructions {
-	font-style: italic;
-}
-
-#pyramid-editor input[type="text"], #pyramid-editor textarea.form-control
-{
-    background: rgba(255,255,255,0.9);
-}
+   #pyramid-editor input[type="text"], #pyramid-editor textarea.form-control
+   {
+   	background: rgba(255,255,255,0.9);
+   }
 
 
 </style>
@@ -75,108 +85,122 @@
 <body>
 
 
-
-<div class="parallax">
-  <div class="parallax__layer parallax__layer--back pyramid-background">
-  </div>
-  <div class="parallax__layer parallax__layer--base">
-
-
-
+	<!-- header -->
 	<form class="form-horizontal" id="pyramid-editor">
 
-		<div class="container-fluid">
+		<div class="container-fluid" style="background-color: #FFF65B;">
 
-		<!-- Header -->
+			<!-- Header -->
 			<div class="row header">
 				<div class="col-md-12">
-					<h1>The Preaching Pyramid</h1>
+					<h1 class="text-center">The Preaching Pyramid</h1>
 				</div>
 			</div>
-
 		</div>
 
-		<div class="container-fluid">
+		<div class="parallax">
+			<div class="parallax__layer parallax__layer--back pyramid-background">
+			</div>
+			<div class="parallax__layer parallax__layer--base">
 
-            <div class="form-group">
-                <label for="passage" class="col-sm-3 control-label">Passage:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="passage" placeholder="e.g. John 1; Genesis 3:16">
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="passage" class="col-sm-3 control-label">Context:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="passage" placeholder="e.g. John 1; Genesis 3:16">
-                </div>
-            </div>
+
+				<div class="container-fluid" style="background-color: #FFF65B;">
+					<div class="form-group">
+						<label for="passage" class="col-xs-3 control-label">Passage:</label>
+						<div class="col-xs-9">
+							<input type="text" class="form-control" id="passage" placeholder="e.g. John 1; Genesis 3:16" tabindex="1">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="passage" class="col-xs-3 control-label">Context:</label>
+						<div class="col-xs-9">
+							<textarea rows="2" class="form-control" id="passage" placeholder="Historical, literary, theological, etc." tabindex="2"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="pyramid container-fluid">
+
+					<div class="row" id="container-purpose">
+						<div class="col-md-12">
+							<input type="text" id="purpose" name="purpose" class="form-control" placeholder="Purpose: mind / heart / will" tabindex="16">
+						</div>
+					</div>
+
+
+					<div class="row" id="container-bigquestion">
+						<div class="col-md-12">
+							<input type="text" id="big-question" name="big-question" class="form-control" placeholder="Big Question?" tabindex="15">
+						</div>
+					</div>
+
+					<div class="row" id="container-bigidea">
+						<div class="col-md-12">
+							<input type="text" id="big-idea" name="big-idea" class="form-control" placeholder="Big Idea!" tabindex="14">
+						</div>
+					</div>
+					<div class="row" id="container-complement">
+						<div class="col-md-12">
+							<textarea id="complement" name="complement" class="form-control" placeholder="Complement: What does the passage say about what it's talking about?" tabindex="13"></textarea>
+						</div>
+					</div>
+
+					<div class="row" id="container-subject">
+						<div class="col-md-12">
+							<input type="text" id="subject" name="subject" class="form-control" placeholder="Subject: What's the passage talking about?" tabindex="12">
+						</div>
+					</div>
+
+
+					<div class="row" id="container-movements">
+						<div class="col-md-12">
+							<textarea id="movements" name="movements" class="form-control" placeholder="Movements in the passage" tabindex="11"></textarea>
+						</div>
+					</div>
+
+					<div class="row" id="container-summarise">
+						<div class="col-md-12">
+							<textarea id="summarise" name="summarise" class="form-control" placeholder="Summarise the passage" tabindex="10"></textarea>
+						</div>
+					</div>
+<!-- 
+					<div class="row">
+						<div class="col-md-12">
+							<p class="instructions">Hit enter when you're done.</p>
+						</div>
+					</div> -->
+
+				</div>
+			</form>
 
 		</div>
-
-
-		<div class="pyramid container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<input type="text" id="purpose" name="purpose" class="form-control" placeholder="Purpose: mind / heart / will">
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-md-12">
-					<input type="text" id="big-question" name="big-question" class="form-control" placeholder="Big Question?">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<input type="text" id="big-idea" name="big-idea" class="form-control" placeholder="Big Idea!">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<textarea id="complement" name="complement" class="form-control" placeholder="Complement: What does the passage say about what it's talking about?"></textarea>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<input type="text" id="subject" name="subject" class="form-control" placeholder="Subject: What's the passage talking about?">
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-md-12">
-					<textarea id="movements" name="movements" class="form-control" placeholder="Movements in the passage"></textarea>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<textarea id="summarise" name="summarise" class="form-control" placeholder="Summarise the passage"></textarea>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<p class="instructions">Hit enter when you're done.</p>
-				</div>
-			</div>
-
-		</div>
-	</form>
-
-  </div>
-</div>
+	</div>
 
 
 
 </body>
 <script>
 	
-window.setInterval(event_loop, 1000);
+$(document).ready(function() {
+	$('#container-purpose').hide();
+	$('#container-bigquestion').hide();
+	$('#container-bigidea').hide();
+	$('#container-complement').hide();
+	$('#container-subject').hide();
+	$('#container-movements').hide();
+
+	$('#big-question').focus(function () { $('#container-purpose:hidden').show('slow'); });
+	$('#big-idea').focus(function () { $('#container-bigquestion:hidden').show('slow'); });
+	$('#complement').focus(function () { $('#container-bigidea:hidden').show('slow'); });
+	$('#subject').focus(function () { $('#container-complement:hidden').show('slow'); });
+	$('#movements').focus(function () { $('#container-subject:hidden').show('slow'); });
+	$('#summarise').focus(function () { $('#container-movements:hidden').show('slow'); });
+
+});
+
+	// window.setInterval(event_loop, 1000);
 
 </script>
 </html>
